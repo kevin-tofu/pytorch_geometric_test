@@ -81,7 +81,9 @@ def make_normal_bias(
     noise = features[:, np.newaxis] * noise
     data = generate_normal(mean, cov, size)
     
-    return data + biasList + noise
+    ret = data + biasList + noise
+    return ret, features
+    
 
 def make_dataset(
     meanList,
