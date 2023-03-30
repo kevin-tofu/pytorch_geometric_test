@@ -128,6 +128,7 @@ def make_dataset(
     # print(dataList.shape, featuresList.shape)
 
     print(dataList[0])
+    # (2, num_edges)
     edge_index = torch.tensor(
         [
             [0, 1], [0, 2]
@@ -140,7 +141,6 @@ def make_dataset(
             pos=torch.tenaor(d).reshape((3,2),
             y=y,
             edge_index=edge_index
-            
         ) for d, f in zip(dataList, featuresList)
     ]
     print(ret[0].x)
