@@ -30,8 +30,8 @@ def generate_normal_bernoulliASmean(
     return  ret
 
 
-data_list = [Data(...), ..., Data(...)]
-loader = DataLoader(data_list, batch_size=32)
+# data_list = [Data(...), ..., Data(...)]
+# loader = DataLoader(data_list, batch_size=32)
 
 
 def make_dataset_2d_each(
