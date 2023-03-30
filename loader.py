@@ -126,7 +126,13 @@ def make_dataset(
     # print(dataList.shape, featuresList.shape)
 
     print(dataList[0])
-    ret = [Data(x=f, pos=d, y=y) for d, f in zip(dataList, featuresList)]
+    ret = [
+        Data(
+            x=f,
+            pos=torch.tenaor(d).reshape((3,2),
+            y=y
+        ) for d, f in zip(dataList, featuresList)
+    ]
     print(ret[0].x)
 
     return ret
