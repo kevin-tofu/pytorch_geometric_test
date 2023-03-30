@@ -62,11 +62,31 @@ def make_dataset_2d_each(
     # ret = [ Data(x=f, pos=d) for d, f in zip(data_noise, features)]
     
     return data_noise, features
-        
+
+
+def make_normal_bias(
+    mean,
+    cov,
+    biasList,
+    noise_cov,
+    p_noise
+):
+    size = len(biasList)
+    features = stats.bernoulli.rvs(p=p_noise, size=size)
+    noise = generate_normal(
+        [0, 0],
+        noise_cov,
+        size
+    )
+    noise = features[:, np.newaxis] * noise
+    data = generate_normal(mean, cov, size)
+    
+    return data + biasList + noise
+
 def make_dataset(
     meanList,
     covList,
-    size,
+    sizeList,
     noise_cov,
     binomial_maen,
     p_success,
@@ -75,15 +95,25 @@ def make_dataset(
 ):  
     dataList = list()
     featuresList = list()
+    data_org, features_org = make_dataset_2d_each(
+        meanList[0],
+        covList[0]
+        sizeList[0],
+        noise_cov,
+        binomial_maen,
+        p_success,
+        p_noise
+    )
+    # print(data.shape)
+    dataList.append(data_org)
+    featuresList.append(features_org)
     
-    for mean, cov in zip(meanList,covList):
-        data, features = make_dataset_2d_each(
+    for mean, cov, size in zip(meanList[1::],covList[1::],sizeList[1::]):
+        data, features = make_normal_bias(
             mean,
             cov,
-            size,
+            data_org
             noise_cov,
-            binomial_maen,
-            p_success,
             p_noise
         )
         print(data.shape)
