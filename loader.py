@@ -124,6 +124,7 @@ def make_dataset(
 
     # print(np.array(dataList).shape, np.array(featuresList).shape)
     dataList = np.hstack(dataList)
+    # num_nodes, num_node_features
     featuresList = np.array(featuresList).T
     # print(dataList.shape, featuresList.shape)
 
