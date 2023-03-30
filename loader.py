@@ -170,7 +170,7 @@ def generation():
         [0, 1]
     ]
     size = 2000
-    binomial_maen = [3, 3]
+    binomial_maen = [1, 1]
     p_success = 0.1
     p_noise = 0.2
     dataset1 = make_dataset(
